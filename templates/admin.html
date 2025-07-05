@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-success">🛠 Admin Panel</h2>
+        <a href="{{ url_for('admin_create_user') }}" class="btn btn-outline-primary">➕ Δημιουργία Χρήστη</a>
+    </div>
+
+    <!-- Χρήστες -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white fw-semibold">
+            👥 Χρήστες
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for user in users %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="fw-semibold">{{ user[2] }}</div>
+                    <div class="text-muted small">Username: {{ user[1] }} | Γέννηση: {{ user[3] }}</div>
+                </div>
+                <span class="badge bg-secondary">ID: {{ user[0] }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Σύνολα ανά χρήστη -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-dark fw-semibold">
+            📊 Σύνολο εξόδων ανά χρήστη
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for user, total in totals %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ user }}
+                <span class="badge bg-primary rounded-pill">{{ total }} €</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Πίνακας Εξόδων -->
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h4 class="text-success">💸 Έξοδα και Τιμολόγια</h4>
+        <a href="{{ url_for('admin_export') }}" class="btn btn-outline-success btn-sm">⬇️ Εξαγωγή CSV</a>
+    </div>
+    <div class="table-responsive shadow-sm">
+        <table class="table table-bordered table-hover align-middle text-center bg-white">
+            <thead class="table-success text-dark">
+                <tr>
+                    <th>Ημερομηνία</th>
+                    <th>Κατηγορία</th>
+                    <th>Ποσό</th>
+                    <th>Σχόλιο</th>
+                    <th>Χρήστης</th>
+                    <th>Ενέργεια</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in expenses %}
+                <tr>
+                    <td>{{ e[1] }}</td>
+                    <td><span class="badge {{ category_color(e[2]) }}">{{ e[2] }}</span></td>
+                    <td>{{ e[3] }} €</td>
+                    <td>{{ e[4] }}</td>
+                    <td>{{ e[5] }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('admin_delete_expense', id=e[0]) }}" onsubmit="return confirm('Σίγουρα θέλεις να διαγράψεις;');">
+                            <button class="btn btn-sm btn-danger">✕</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

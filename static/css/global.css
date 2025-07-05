@@ -1,0 +1,247 @@
+/* === Global Reset & Typography === */
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f5f7fa;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Layout Containers === */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* === Navbar Styling === */
+.navbar {
+    background-color: #264653 !important;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+    padding: 1rem 2rem;
+    transition: background-color 0.3s ease;
+}
+.navbar:hover {
+    background-color: #1b2d3a !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: #f4a261 !important;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.nav-link {
+    color: #e9ecef !important;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+.nav-link:hover, .nav-link:focus {
+    color: #f4a261 !important;
+    text-shadow: 0 0 6px #f4a261;
+}
+
+/* === Buttons === */
+.btn {
+    border-radius: 30px !important;
+    font-weight: 600;
+    padding: 0.6rem 1.8rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+}
+.btn-primary {
+    background: #2a9d8f;
+    border: none;
+}
+.btn-primary:hover, .btn-primary:focus {
+    background: #21867a;
+    box-shadow: 0 6px 15px rgb(42 156 143 / 0.45);
+    transform: translateY(-2px);
+}
+.btn-success {
+    background-color: #4caf50 !important;
+    border: none;
+}
+.btn-success:hover {
+    background-color: #388e3c !important;
+    box-shadow: 0 6px 20px #388e3c88;
+    transform: translateY(-2px);
+}
+.btn-outline-success {
+    border-color: #4caf50;
+    color: #4caf50;
+}
+.btn-outline-success:hover {
+    background-color: #4caf50;
+    color: white;
+    box-shadow: 0 8px 20px #4caf50cc;
+}
+
+/* === Cards === */
+.card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 1.6rem 2rem;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
+    margin-bottom: 2rem;
+    transition: box-shadow 0.3s ease;
+}
+.card:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.15);
+}
+
+/* === Tables === */
+.table {
+    border-collapse: separate !important;
+    border-spacing: 0 0.75rem !important;
+    background: transparent !important;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgb(0 0 0 / 0.07);
+}
+
+.table thead tr {
+    background-color: #2a9d8f;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.table tbody tr {
+    background-color: #ffffff;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.05);
+    transition: background-color 0.25s ease;
+}
+.table tbody tr:hover {
+    background-color: #dbe9f0;
+}
+
+.table td, .table th {
+    padding: 1rem 1.2rem;
+    vertical-align: middle !important;
+}
+
+/* === Badges for categories === */
+.badge {
+    padding: 0.45em 0.85em;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #fff !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+    user-select: none;
+}
+.badge.bg-Λίπασμα {
+    background-color: #388e3c;
+}
+.badge.bg-Καύσιμα {
+    background-color: #d32f2f;
+}
+.badge.bg-Ημερομίσθια {
+    background-color: #1976d2;
+}
+.badge.bg-Αναλώσιμα {
+    background-color: #fbc02d;
+    color: #333 !important;
+}
+.badge.bg-Άλλα {
+    background-color: #616161;
+}
+.badge.bg-Τιμολόγιο {
+    background-color: #0288d1;
+}
+
+/* === Forms === */
+.form-label {
+    font-weight: 600;
+    color: #264653;
+}
+
+.form-control, .form-select {
+    border-radius: 12px;
+    border: 1.5px solid #ced4da;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #2a9d8f;
+    box-shadow: 0 0 8px #2a9d8f88;
+    outline: none;
+}
+
+/* === Inputs / Buttons on hover === */
+input[type="date"]:focus, input[type="text"]:focus, input[type="number"]:focus {
+    box-shadow: 0 0 10px #2a9d8faa;
+    border-color: #2a9d8f;
+}
+
+/* === Responsive Utility === */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 10px;
+    }
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
+
+/* === Footer === */
+.footer {
+    background: #e9ecef;
+    color: #777;
+    font-size: 0.9rem;
+    padding: 16px 0;
+    text-align: center;
+    user-select: none;
+    letter-spacing: 0.03em;
+    margin-top: 60px;
+}
+
+/* === Links === */
+a {
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+a:hover {
+    color: #2a9d8f;
+    text-decoration: underline;
+}
+
+/* === Smooth shadows for inputs, cards, buttons === */
+.card, .btn, .form-control, .form-select {
+    transition: box-shadow 0.3s ease, transform 0.25s ease;
+}
+.card:hover, .btn:hover, .form-control:focus, .form-select:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgb(0 0 0 / 0.15);
+}
+
+/* === Custom Scrollbar for Webkit === */
+::-webkit-scrollbar {
+    width: 9px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #2a9d8f;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #1d5e78;
+}

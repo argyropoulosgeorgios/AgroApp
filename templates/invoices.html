@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4" style="max-width: 900px;">
+  <div class="card p-4 rounded-4 shadow-sm bg-white">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="fw-bold text-primary mb-0">🧾 Τιμολόγια</h3>
+      <div>
+        <a href="{{ url_for('export_invoices') }}" class="btn btn-outline-primary me-2">
+          <i class="fas fa-file-csv"></i> Εξαγωγή CSV
+        </a>
+        <a href="{{ url_for('invoices') }}" class="btn btn-outline-secondary">
+          <i class="fas fa-sync-alt"></i> Ανανέωση
+        </a>
+      </div>
+    </div>
+
+    <!-- Φόρμα προσθήκης τιμολογίου -->
+    <form method="POST" class="row g-3 mb-4">
+      <div class="col-md-3">
+        <label for="date" class="form-label fw-semibold text-primary">📅 Ημερομηνία</label>
+        <input id="date" type="date" name="date" class="form-control" required>
+      </div>
+      <div class="col-md-3">
+        <label for="customer" class="form-label fw-semibold text-primary">👥 Πελάτης</label>
+        <input id="customer" type="text" name="customer" class="form-control" placeholder="π.χ. Γεωργική Α.Ε." required>
+      </div>
+      <div class="col-md-2">
+        <label for="amount" class="form-label fw-semibold text-primary">💶 Ποσό (€)</label>
+        <input id="amount" type="number" step="0.01" name="amount" class="form-control" placeholder="π.χ. 120.00" required>
+      </div>
+      <div class="col-md-3">
+        <label for="description" class="form-label fw-semibold text-primary">📝 Περιγραφή</label>
+        <input id="description" type="text" name="description" class="form-control" placeholder="π.χ. Πώληση προϊόντων">
+      </div>
+      <div class="col-md-1 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100 fw-semibold" title="Προσθήκη Τιμολογίου">➕</button>
+      </div>
+    </form>
+
+    <!-- Πίνακας τιμολογίων -->
+    <div class="table-responsive shadow-sm rounded-3">
+      <table class="table table-striped table-hover align-middle text-center mb-0" style="color: #264653;">
+        <thead class="table-primary" style="color: #264653;">
+          <tr>
+            <th>Ημερομηνία</th>
+            <th>Πελάτης</th>
+            <th>Ποσό</th>
+            <th>Περιγραφή</th>
+            <th>Ενέργειες</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for invoice in invoices %}
+          <tr>
+            <td>{{ invoice[2] }}</td>
+            <td>{{ invoice[3] }}</td>
+            <td><strong>{{ invoice[4] }} €</strong></td>
+            <td>{{ invoice[5] }}</td>
+            <td>
+              <form method="POST" action="{{ url_for('delete_invoice', id=invoice[0]) }}" onsubmit="return confirm('Είσαι σίγουρος/η ότι θέλεις να διαγράψεις αυτό το τιμολόγιο;');">
+                <button type="submit" class="btn btn-danger btn-sm" title="Διαγραφή">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="5" class="text-muted fst-italic">Δεν υπάρχουν καταχωρημένα τιμολόγια.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

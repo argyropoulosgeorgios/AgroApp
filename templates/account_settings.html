@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4" style="max-width: 600px;">
+  <h2>Ρυθμίσεις Λογαριασμού</h2>
+  <form method="POST" class="mt-3">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" type="email" name="email" value="{{ email }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Νέος Κωδικός (άφησε κενό για να μη αλλάξει)</label>
+      <input id="password" type="password" name="password" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Αποθήκευση</button>
+  </form>
+</div>
+{% endblock %}

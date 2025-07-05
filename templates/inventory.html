@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2 class="section-title">📦 Διαχείριση Αποθήκης</h2>
+
+    <!-- Φόρμα Προσθήκης Προϊόντος -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="POST" action="/inventory">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-4">
+                        <label class="form-label">Προϊόν</label>
+                        <select class="form-select" name="product_id" required>
+                            <option value="">-- Επιλέξτε προϊόν --</option>
+                            {% for p in products_catalog %}
+                            <option value="{{ p[0] }}">{{ p[1] }} ({{ p[3] }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Ποσότητα</label>
+                        <input type="number" class="form-control" name="quantity" step="any" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Ημερομηνία</label>
+                        <input type="date" class="form-control" name="date" required>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-success w-100">➕ Προσθήκη</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Φίλτρα -->
+    <form method="GET" class="card p-3 mb-4">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Προϊόν</label>
+                <select class="form-select" name="product_id">
+                    <option value="">Όλα</option>
+                    {% for p in products_catalog %}
+                    <option value="{{ p[0] }}" {% if request.args.get('product_id') == p[0]|string %}selected{% endif %}>{{ p[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Από Ημ/νία</label>
+                <input type="date" name="start_date" class="form-control" value="{{ request.args.get('start_date', '') }}">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Έως Ημ/νία</label>
+                <input type="date" name="end_date" class="form-control" value="{{ request.args.get('end_date', '') }}">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Αναζήτηση</label>
+                <input type="text" name="search" class="form-control" placeholder="Λέξη..." value="{{ request.args.get('search', '') }}">
+            </div>
+            <div class="col-md-12 text-end">
+                <button type="submit" class="btn btn-primary">🔍 Φίλτρα</button>
+                <a href="/inventory" class="btn btn-secondary">🗑️ Καθαρισμός</a>
+            </div>
+        </div>
+    </form>
+
+    <!-- Πίνακας Αποθήκης -->
+    <div class="card">
+        <div class="card-body">
+            {% if inventory_data %}
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Ημερομηνία</th>
+                            <th>Προϊόν</th>
+                            <th>Ποσότητα</th>
+                            <th>Μονάδα</th>
+                            <th>Κατηγορία</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in inventory %}
+                        <tr>
+                            <td>{{ row['date'] }}</td>
+                            <td>{{ row['product_name'] }}</td>
+                            <td>{{ row['quantity'] }}</td>
+                            <td>{{ row['unit'] }}</td>
+                            <td>{{ row['category'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="text-muted text-center mt-3">Δεν βρέθηκαν εγγραφές αποθήκης.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

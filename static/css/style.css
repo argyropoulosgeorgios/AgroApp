@@ -1,0 +1,401 @@
+/* === Global Reset & Typography === */
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: transparent; /* εικόνα από base.html */
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    animation: fadeInBody 1.5s ease forwards;
+}
+
+@keyframes fadeInBody {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* === Layout Containers === */
+.container {
+    max-width: 1140px;
+    margin: 40px auto 60px auto;
+    padding: 30px 25px;
+    background: rgba(245, 247, 250, 0.95); /* λευκό-γκρι, σχεδόν αδιαφανές */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    border-radius: 16px;
+    min-height: 80vh;
+    color: #222;
+    transform: translateY(30px);
+    opacity: 0;
+    animation: slideUpFadeIn 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes slideUpFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === Navbar Overrides === */
+.navbar {
+    background-color: #264653 !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    padding: 1rem 2rem;
+    transition: none !important;
+}
+.navbar:hover {
+    background-color: #264653 !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: #f4a261 !important;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    animation: pulseGlow 3s infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+        color: #f4a261;
+    }
+    50% {
+        text-shadow: 0 0 12px #f4a261cc, 0 0 20px #f4a261cc;
+        color: #ffc870;
+    }
+}
+
+.nav-link {
+    color: #222 !important;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: #f4a261;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:hover::after, .nav-link:focus::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: #f4a261 !important;
+    text-shadow: 0 0 6px #f4a261;
+}
+
+/* === Footer Styling === */
+.footer {
+    background: #264653cc;
+    color: #f4f4f4;
+    font-size: 0.9rem;
+    padding: 16px 0;
+    text-align: center;
+    user-select: none;
+    letter-spacing: 0.03em;
+    margin-top: 60px;
+    backdrop-filter: saturate(180%) blur(20px);
+    border-top: none;
+    animation: fadeInFooter 2s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInFooter {
+    to {opacity: 1;}
+}
+
+/* === Buttons === */
+.btn {
+    border-radius: 30px;
+    font-weight: 600;
+    padding: 0.6rem 1.8rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Shiny highlight animation on all buttons */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -25%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    transform: skewX(-20deg) translateX(0);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.btn:hover::before, .btn:focus::before {
+    transform: skewX(-20deg) translateX(200%);
+}
+
+/* Primary button */
+.btn-primary {
+    background-color: #2a9d8f;
+    border: none;
+    color: white;
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #21867a;
+    box-shadow: 0 6px 15px rgba(42,156,143,0.45);
+    transform: translateY(-2px);
+}
+
+/* Success button */
+.btn-success {
+    background-color: #4caf50 !important;
+    border: none;
+    color: white;
+}
+.btn-success:hover {
+    background-color: #388e3c !important;
+    box-shadow: 0 6px 20px #388e3c88;
+    transform: translateY(-2px);
+}
+
+/* Outline light button */
+.btn-outline-light {
+    border-color: #ddd;
+    color: #222;
+    background: transparent;
+}
+.btn-outline-light:hover {
+    background-color: #f4f4f4;
+    color: #264653;
+}
+
+/* === Custom Έξοδος Button === */
+.btn-exit {
+    background-color: #f8f9fa; /* σχεδόν λευκό */
+    color: #444; /* σκούρο γκρι */
+    border: 2px solid #ccc; /* απαλό γκρι περίγραμμα */
+    transition: none; /* χωρίς αλλαγή στο hover */
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 0.4rem 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-exit::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -25%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    transform: skewX(-20deg) translateX(0);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.btn-exit:hover::before,
+.btn-exit:focus::before {
+    transform: skewX(-20deg) translateX(200%);
+}
+
+/* Καμία αλλαγή χρώματος ή φόντου στο hover */
+.btn-exit:hover,
+.btn-exit:focus {
+    background-color: #f8f9fa;
+    color: #444;
+    border-color: #ccc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transform: none;
+}
+
+/* === Cards === */
+.card {
+    background-color: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    color: #222;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: default;
+}
+.card:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    transform: translateY(-6px);
+}
+
+/* === Tables === */
+.table {
+    border-collapse: separate !important;
+    border-spacing: 0 0.75rem !important;
+    background: transparent !important;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    color: #222;
+}
+
+.table thead tr {
+    background-color: #2a9d8f;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.table tbody tr {
+    background-color: rgba(42,157,143,0.12);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: background-color 0.25s ease;
+}
+.table tbody tr:hover {
+    background-color: rgba(42,157,143,0.25);
+}
+
+.table td, .table th {
+    padding: 1rem 1.2rem;
+    vertical-align: middle !important;
+}
+
+/* === Badges for categories === */
+.badge {
+    padding: 0.45em 0.85em;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #fff !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+    user-select: none;
+}
+.badge.bg-Λίπασμα {
+    background-color: #388e3c;
+}
+.badge.bg-Καύσιμα {
+    background-color: #d32f2f;
+}
+.badge.bg-Ημερομίσθια {
+    background-color: #1976d2;
+}
+.badge.bg-Αναλώσιμα {
+    background-color: #fbc02d;
+    color: #333 !important;
+}
+.badge.bg-Άλλα {
+    background-color: #616161;
+}
+.badge.bg-Τιμολόγιο {
+    background-color: #0288d1;
+}
+
+/* === Forms === */
+.form-label {
+    font-weight: 600;
+    color: #222;
+}
+
+.form-control, .form-select {
+    border-radius: 12px;
+    border: 1.5px solid #ced4da;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    color: #222;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #2a9d8f;
+    box-shadow: 0 0 8px #2a9d8f88;
+    outline: none;
+}
+/* Αποφυγή default Bootstrap click behavior */
+.nav-item.dropdown:hover > .dropdown-menu {
+  display: block;
+  margin-top: 0; /* για να είναι ακριβώς κάτω από το menu item */
+  z-index: 2000; /* πολύ ψηλό ώστε να φαίνεται πάνω από όλα */
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+/* Αρχικά κρύβουμε το dropdown */
+.navbar .dropdown-menu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  background-color: #264653cc !important;
+  color: #f4f4f4 !important;
+  border: none;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  position: absolute; /* απαραίτητο για σωστή τοποθέτηση */
+  top: 100%; /* ακριβώς κάτω από το γονικό li */
+  left: 0;
+}
+
+/* Στυλ dropdown items */
+.navbar .dropdown-menu .dropdown-item {
+  color: #f4f4f4 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover,
+.navbar .dropdown-menu .dropdown-item:focus {
+  background-color: #f4a261 !important;
+  color: #264653 !important;
+}
+
+/* Εξασφάλιση σωστής συμπεριφοράς του dropdown toggle icon */
+.nav-item.dropdown:hover > a.nav-link.dropdown-toggle {
+  color: #f4a261 !important;
+  text-shadow: 0 0 6px #f4a261;
+}
+
+
+
+/* === Inputs / Buttons on hover === */
+input[type="date"]:focus, input[type="text"]:focus, input[type="number"]:focus {
+    box-shadow: 0 0 10px #2a9d8faa;
+    border-color: #2a9d8f;
+}
+
+/* === Responsive Utility === */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 10px;
+    }
+    .navbar-brand {
+        font-size: 1.4rem;
+    }
+}
+
+/* === Footer tweaks === */
+.footer {
+    user-select: none;
+    letter-spacing: 0.03em;
+    backdrop-filter: saturate(180%) blur(20px);
+}

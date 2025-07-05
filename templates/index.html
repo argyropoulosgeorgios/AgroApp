@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="py-5">
+  <div class="container-sm text-center">
+    <h1 class="mb-4 fw-bold text-secondary">Καλωσήρθες, {{ session.username }}!</h1>
+    <p class="mb-5 text-muted fs-5">Αυτή είναι η κεντρική σου σελίδα στην Agro Intelligence Suite.</p>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100 p-4 border-0 rounded-4 shadow-sm" style="background: linear-gradient(135deg, #d4f0e4, #a0d6b4);">
+          <div class="mb-3 fs-2">📅</div>
+          <h5 class="mb-3 fw-semibold text-success">Έξοδα Καταχωρημένα</h5>
+          <div class="fs-2 fw-bold text-success">{{ total_expenses }}</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 p-4 border-0 rounded-4 shadow-sm" style="background: linear-gradient(135deg, #d4e5f0, #a0b6d6);">
+          <div class="mb-3 fs-2">🧾</div>
+          <h5 class="mb-3 fw-semibold text-primary">Τιμολόγια</h5>
+          <div class="fs-2 fw-bold text-primary">{{ total_invoices }}</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100 p-4 border-0 rounded-4 shadow-sm" style="background: linear-gradient(135deg, #f0d4d4, #d6a0a0);">
+          <div class="mb-3 fs-2">🧑‍🌾</div>
+          <h5 class="mb-3 fw-semibold text-dark">Όνομα Χρήστη</h5>
+          <div class="fs-2 fw-bold text-dark">{{ session.username }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 text-muted fst-italic">
+      <small>⚙️ Περισσότερα στατιστικά και λειτουργίες σύντομα.</small>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
